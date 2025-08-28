@@ -1,0 +1,783 @@
+/* Modern Portal Redesign - 2025 */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap');
+
+:root {
+    --header-bg: #1D3557;
+    --footer-bg: #2C3E50;
+    --primary: #4361ee;
+    --accent: #48cae4;
+    --text-primary: #2b2d42;
+    --text-secondary: #6c757d;
+    --bg-light: #f8fafc;
+    --white: #ffffff;
+    --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background: linear-gradient(135deg, #f0f7ff 0%, #fff5f5 100%);
+    min-height: 100vh;
+}
+
+.hero-bg {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(120deg, #aee9ff 0%, #fff8e6 100%);
+  animation: gradientMove 12s ease-in-out infinite alternate;
+}
+@keyframes gradientMove {
+  0% { filter: brightness(1) blur(0px); }
+  100% { filter: brightness(1.08) blur(2px); }
+}
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.12;
+  background: #1D3557;
+  animation: float 8s infinite alternate ease-in-out;
+}
+@keyframes float {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(-30px) scale(1.08); }
+}
+
+/* HEADER SECTION */
+header {
+  background: var(--header-bg);
+  padding: 1rem 2rem;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+}
+header .logo {
+  display: flex;
+  align-items: center;
+}
+header .logo img {
+  height: 50px;
+  margin-right: 1rem;
+}
+header .branding {
+  display: flex;
+  flex-direction: column;
+}
+header .branding h1 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+header .branding p {
+  font-size: 0.9rem;
+}
+
+/* GLASS NAVIGATION BAR */
+.glass-nav {
+  width: 100vw;
+  background: rgba(29,53,87,0.82);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(29,53,87,0.12);
+  border-bottom: 1.5px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 48px;
+  position: sticky;
+  top: 0;
+}
+.npg-logo {
+  width: 56px; height: 56px; border-radius: 50%; box-shadow: 0 2px 8px #1d355722; }
+.branding {
+  display: flex; flex-direction: column; gap: 2px; margin-left: 18px; }
+.branding-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+.branding-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  color: #e6eef6;
+  font-weight: 500;
+}
+
+/***** Navigation Bar *****/
+.navbar {
+  display: flex;
+  flex-wrap: wrap;  /* Allow wrapping for smaller screens */
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 0.5rem 2rem;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+.navbar li {
+  position: relative;
+}
+.navbar a {
+  text-decoration: none;
+  color: #1D3557;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+}
+
+/* Dropdown Menu */
+.navbar li ul {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  padding: 0.5rem 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+.navbar li:hover > ul {
+  display: block;
+}
+.navbar li ul li {
+  width: 200px;
+}
+.navbar li ul li a {
+  display: block;
+  padding: 0.5rem 1rem;
+}
+
+/* PULSING STRATEGY BUTTON */
+.strategy-btn {
+    background: var(--primary);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    border: none;
+    font-weight: 600;
+    animation: pulse 2s infinite;
+    position: relative;
+}
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(67, 97,238, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(67, 97,238, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(67, 97,238, 0); }
+}
+
+/* SMART SEARCH BAR */
+.smart-search {
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.7);
+  border-radius: 14px;
+  box-shadow: 0 2px 8px #1d355722;
+  padding: 8px 18px;
+  margin: 24px auto 0;
+  max-width: 420px;
+}
+.smart-search input {
+  border: none;
+  background: transparent;
+  font-size: 1.08em;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  flex: 1;
+  padding: 8px 0;
+}
+.smart-search .search-icon {
+  font-size: 1.3em;
+  color: #457b9d;
+  margin-right: 8px;
+}
+
+/* LANGUAGE TOGGLE SLIDER */
+.lang-toggle-slider {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.7);
+  border-radius: 999px;
+  padding: 6px 18px;
+  box-shadow: 0 2px 8px #1d355722;
+  font-weight: 600;
+  font-size: 1.08em;
+}
+.lang-switch {
+  position: relative;
+  width: 48px;
+  height: 24px;
+  background: #eaf4ff;
+  border-radius: 999px;
+  margin: 0 8px;
+  cursor: pointer;
+}
+.lang-switch input {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0; top: 0;
+  cursor: pointer;
+}
+.lang-switch .slider {
+  position: absolute;
+  top: 2px; left: 2px;
+  width: 20px; height: 20px;
+  background: #457b9d;
+  border-radius: 50%;
+  transition: left 0.2s, background 0.2s;
+}
+.lang-switch input:checked + .slider {
+  left: 26px;
+  background: #e63946;
+}
+
+/* ASYMMETRIC CARD GRID */
+.main-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 32px;
+  margin: 48px auto 32px;
+  max-width: 1400px;
+  padding: 0 24px;
+}
+.knowledge-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+.knowledge-card:hover {
+    transform: translateY(-5px);
+}
+.card-icon {
+  width: 48px; height: 48px;
+  margin-bottom: 8px;
+  filter: drop-shadow(0 2px 8px #457b9d44);
+  transform: perspective(120px) rotateY(-8deg) scale(1.08);
+}
+.card-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.18em;
+  font-weight: 700;
+  color: #1d3557;
+}
+.card-desc {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+.card-cta {
+  margin-top: 12px;
+}
+.cta-btn {
+  background: linear-gradient(90deg, #457b9d 0%, #e63946 100%);
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 38px;
+  font-size: 1.08em;
+  box-shadow: 0 2px 12px #457b9d22;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.cta-btn::after {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; width: 100%; height: 100%;
+  background: linear-gradient(90deg, #e63946 0%, #457b9d 100%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  border-radius: 999px;
+  z-index: 0;
+}
+.cta-btn:hover {
+  background: linear-gradient(90deg, #e63946 0%, #457b9d 100%);
+  box-shadow: 0 8px 32px #e6394622;
+  transform: scale(1.05);
+}
+.cta-btn:hover::after {
+  opacity: 0.18;
+}
+
+/***** Main Content - Cards Grid *****/
+.main-content {
+  padding: 2rem;
+}
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+.card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0,0,0,0.15);
+}
+.card img {
+  width: 100%;
+  height: auto;
+}
+.card .card-content {
+  padding: 1rem;
+}
+.card .card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.card .card-description {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+.card button {
+  background: #1D3557;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.card button:hover {
+  background: #16324F;
+}
+
+/***** Controls: Language Toggle and Search Bar *****/
+.controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding: 1rem 2rem;
+}
+.language-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.search-bar input {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* FOOTER */
+footer {
+  background: var(--footer-bg);
+  color: white;
+  padding: 1.5rem;
+  margin-top: 3rem;
+  text-align: center;
+}
+footer .contact-info {
+  margin-bottom: 0.5rem;
+}
+footer .social-icons a {
+  margin: 0 0.5rem;
+  color: #fff;
+  font-size: 1.4rem;
+  text-decoration: none;
+}
+
+/* Constrain inline SVGs and images to avoid oversized icons */
+/* General safe defaults */
+img, svg {
+  max-width: 100%;
+  height: auto;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* UI-specific icon sizes (override large default SVG render size) */
+header .logo img,
+.npg-logo {
+  width: auto;
+  height: 50px;
+}
+
+/* Footer and community icons */
+footer .community-bar svg,
+footer .community-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+/* Small inline icons used in question cards */
+.question-meta img,
+.question-meta svg {
+  width: 36px;
+  height: 36px;
+}
+
+/* Card icon (larger) */
+.card-icon,
+.knowledge-card .card-icon img,
+.knowledge-card .card-icon svg {
+  width: 48px;
+  height: 48px;
+}
+
+/* Specific sizing for question icons added in index.html */
+.question-icon {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  display: inline-block;
+}
+
+/* Ensure npg-logo uses consistent sizing (already defined) */
+.npg-logo { width: auto; height: 50px; }
+
+/* Prevent any global selectors from enlarging icons */
+header img, .question-meta img, .community-icon img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Ensure .card image rule doesn't accidentally enlarge small inline icons
+   (only target images that are explicitly card images using the .card-image class) */
+.card img { max-width: 100%; height: auto; }
+
+/* Provide a safe default for any inline SVG that still renders too large */
+svg[width]:not(.npg-logo), svg[height]:not(.npg-logo) {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Important Questions Menu Styling */
+.imp-questions-menu {
+    min-width: 200px;
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-radius: 8px !important;
+    padding: 8px 0 !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15) !important;
+}
+
+.imp-questions-menu li a {
+    color: var(--text-primary);
+    font-weight: 500;
+    padding: 10px 20px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.imp-questions-menu li a:hover {
+    background: rgba(67, 97, 238, 0.1);
+    color: var(--primary);
+}
+
+.imp-questions-menu li a::before {
+    content: '📝';
+    font-size: 1.1em;
+}
+
+/* Active state for Important Questions tab */
+#impQuestionsTab.active {
+    color: var(--primary);
+    background: rgba(67, 97, 238, 0.1);
+    border-radius: 6px;
+}
+
+/* Questions Display Styling */
+.questions-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.section-title {
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+.questions-list {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.question-card {
+    position: relative;
+    border-left: 4px solid var(--primary);
+}
+
+.question-number {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    background: var(--primary);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.question-text {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    padding-top: 1rem;
+}
+
+.answer-text {
+    color: var(--text-secondary);
+    padding: 1rem;
+    background: rgba(67, 97, 238, 0.05);
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+.marks-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: var(--accent);
+    color: white;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Exam Blueprint Styles */
+.exam-plan-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary) !important;
+    font-weight: 600 !important;
+}
+
+.exam-plan-link i {
+    font-size: 1.2em;
+}
+
+.blueprint-card {
+    border-left: 4px solid var(--primary);
+    background: linear-gradient(135deg, rgba(67, 97, 238, 0.05), rgba(255, 255, 255, 0.9));
+}
+
+.blueprint-features {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0;
+}
+
+.blueprint-features li {
+    margin: 8px 0;
+    color: var(--text-primary);
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Part B PYQs Link Styling */
+.partb-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary) !important;
+    font-weight: 600 !important;
+    background: rgba(67, 97, 238, 0.1);
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.partb-link:hover {
+    background: rgba(67, 97, 238, 0.2);
+    transform: translateY(-1px);
+}
+
+.partb-link i {
+    font-size: 1.1em;
+}
+
+/* Community Section Styles */
+.community-section {
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, rgba(67, 97, 238, 0.05), rgba(255, 255, 255, 0.9));
+    margin-top: 3rem;
+}
+
+.community-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 2rem auto;
+}
+
+.community-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.community-card:hover {
+    transform: translateY(-5px);
+}
+
+.community-card i {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.community-card.youtube i { color: #ff0000; }
+.community-card.whatsapp i { color: #25D366; }
+.community-card.telegram i { color: #0088cc; }
+.community-card.instagram i { color: #E4405F; }
+
+.community-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.community-card p {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+    text-align: left;
+}
+
+.feature-list li {
+    padding: 0.5rem 0;
+    color: var(--text-secondary);
+}
+
+/* Board Papers Download Styling */
+.paper-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.paper-group {
+    flex: 1;
+    background: rgba(67, 97, 238, 0.05);
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.medium-title {
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+}
+
+.pdf-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: var(--primary);
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.pdf-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(67, 97, 238, 0.2);
+}
+
+.years-text {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin: -0.25rem 0 0.75rem;
+}
+
+@media (max-width: 480px) {
+  .years-text {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .years-text {
+    font-size: 0.7rem;
+  }
+}
+
+/* RESPONSIVE */
+@media (max-width:900px){ .main-grid{ grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap:18px; } .glass-nav{ padding: 12px 10px; } }
+@media (max-width:480px){ .glass-nav{ padding: 8px 2vw; } .npg-logo{ width:40px;height:40px } .main-grid{ gap:10px; } }
+@media (max-width: 768px) {
+  header, .navbar, .controls, footer {
+    flex-direction: column;
+    text-align: center;
+  }
+  .navbar ul {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+@media (max-width: 480px) {
+  header .branding h1 {
+    font-size: 1.5rem;
+  }
+  header .branding p {
+    font-size: 0.8rem;
+  }
+  .navbar a {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+  .controls {
+    flex-direction: column;
+    align-items: center;
+  }
+  .card-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+  }
+  .navbar a {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+  .controls {
+    flex-direction: column;
+    align-items: center;
+  }
+  .card-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+
