@@ -38,7 +38,15 @@ function loadQuestions(type) {
 
 function renderCurrentPage() {
     if (!currentQuestions || currentQuestions.length === 0) {
-        document.getElementById("content").innerHTML = '<p>No questions available. Please select a category.</p>';
+        document.getElementById("content").innerHTML = `
+            <div class="no-questions" data-aos="fade-up">
+                <div class="no-questions-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3>No questions found</h3>
+                <p>Please select a category or try a different search term.</p>
+            </div>
+        `;
         return;
     }
 
@@ -47,11 +55,15 @@ function renderCurrentPage() {
     const pageQuestions = currentQuestions.slice(startIndex, endIndex);
     const totalPages = Math.ceil(currentQuestions.length / questionsPerPage);
 
-    let html = `<h2>${currentTitle}</h2><div class='question-list'>`;
+    let html = `
+        <div class="questions-container">
+            <h2 class="section-title" data-aos="fade-down">${currentTitle}</h2>
+            <div class="question-list">
+    `;
 
-    pageQuestions.forEach(q => {
+    pageQuestions.forEach((q, index) => {
         html += `
-            <div class="knowledge-card">
+            <div class="knowledge-card" data-aos="fade-up" data-aos-delay="${index * 100}">
                 <div class="card-icon">
                     <i class="fas fa-question-circle"></i>
                 </div>
@@ -61,23 +73,26 @@ function renderCurrentPage() {
                 <p class="card-desc">
                     ${currentLang === 'english' ? q.question_english : q.question_gujarati}
                 </p>
+                <div class="question-meta">
+                    <span class="marks-badge">${currentTitle.includes('2') ? '2' : currentTitle.includes('3') ? '3' : '4'} Marks</span>
+                </div>
             </div>
         `;
     });
 
-    html += `</div>`;
+    html += `</div></div>`;
 
     // Only show pagination if there are multiple pages
     if (totalPages > 1) {
         html += `
-            <div class="pagination" style="margin-top: 2rem; display: flex; justify-content: center; gap: 1rem;">
-                ${currentPage > 1 ? `<button onclick="changePage(${currentPage - 1})" class="cta-btn prev-btn">
+            <div class="pagination" data-aos="fade-up" data-aos-delay="600">
+                ${currentPage > 1 ? `<button onclick="changePage(${currentPage - 1})" class="prev-btn">
                     <i class="fas fa-chevron-left"></i> Previous
                 </button>` : ''}
-                <span class="page-info" style="display: flex; align-items: center; font-weight: 500;">
+                <span class="page-info">
                     Page ${currentPage} of ${totalPages}
                 </span>
-                ${currentPage < totalPages ? `<button onclick="changePage(${currentPage + 1})" class="cta-btn next-btn">
+                ${currentPage < totalPages ? `<button onclick="changePage(${currentPage + 1})" class="next-btn">
                     Next <i class="fas fa-chevron-right"></i>
                 </button>` : ''}
             </div>
@@ -85,6 +100,11 @@ function renderCurrentPage() {
     }
 
     document.getElementById("content").innerHTML = html;
+    
+    // Reinitialize AOS for new content
+    if (typeof AOS !== 'undefined') {
+        AOS.refresh();
+    }
 }
 
 function changePage(newPage) {
@@ -133,6 +153,11 @@ function toggleLanguage() {
 // Show the homepage resource cards (replaces content with initial home cards)
 function showHome() {
     document.getElementById('content').innerHTML = originalHomeContent;
+    
+    // Reinitialize AOS for home content
+    if (typeof AOS !== 'undefined') {
+        AOS.refresh();
+    }
 }
 
 // Show Part B PYQs using existing loaders
