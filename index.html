@@ -7,935 +7,522 @@
     <title>NEET Physics Gujarati - Physics Quiz Portal</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-        xintegrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        :root {
-            --primary: #4361ee;
-            --secondary: #3a0ca3;
-            --accent: #f72585;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --success: #4cc9f0;
-            --warning: #ffd166;
-            --gradient-primary: linear-gradient(135deg, #4361ee, #3a0ca3);
-            --gradient-accent: linear-gradient(135deg, #f72585, #b5179e);
-            --gradient-success: linear-gradient(135deg, #4cc9f0, #4895ef);
-            --gradient-warning: linear-gradient(135deg, #ffd166, #ff9e66);
-            --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --shadow-md: 0 10px 15px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 20px 25px rgba(0, 0, 0, 0.15);
-            --radius: 12px;
-            --transition: all 0.3s ease;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            color: var(--dark);
-            min-height: 100vh;
-            line-height: 1.6;
-            background-attachment: fixed;
-        }
-
-        .main-header {
-            background: var(--gradient-primary);
-            color: white;
-            padding: 1rem 2rem;
-            box-shadow: var(--shadow-md);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .npg-logo {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-            box-shadow: var(--shadow-sm);
-            border: 2px solid white;
-        }
-
-        .brand-text h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            line-height: 1.2;
-        }
-
-        .brand-text p {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-
-        .glass-nav {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 0.5rem 0;
-            position: sticky;
-            top: 82px;
-            z-index: 999;
-        }
-
-        .navbar {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-        }
-
-        .navbar ul {
-            display: flex;
-            list-style: none;
-            gap: 1.5rem;
-        }
-
-        .navbar ul li {
-            position: relative;
-        }
-
-        .navbar ul li a {
-            /* Changed color to a dark variable for better visibility */
-            color: var(--secondary);
-            text-decoration: none;
-            font-weight: 600; /* Made font slightly bolder */
-            padding: 0.5rem 0.8rem;
-            border-radius: 30px;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .navbar ul li a:hover {
-            background: rgba(255, 255, 255, 0.2);
-            color: var(--primary);
-            transform: translateY(-2px);
-        }
-
-        .navbar ul li ul {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: white;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-lg);
-            padding: 0.5rem;
-            min-width: 200px;
-            flex-direction: column;
-            gap: 0.5rem;
-            z-index: 100;
-        }
-
-        .navbar ul li:hover ul {
-            display: flex;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .navbar ul li ul li a {
-            color: var(--dark) !important;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            text-shadow: none;
-        }
-
-        .navbar ul li ul li a:hover {
-            background: rgba(67, 97, 238, 0.1);
-        }
-
-        .strategy-btn {
-            background: var(--gradient-accent);
-            color: white;
-            border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 30px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .strategy-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .controls {
-            max-width: 1200px;
-            margin: 1.5rem auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .lang-toggle-slider {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .lang-switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 30px;
-        }
-
-        .lang-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .lang-switch .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ddd;
-            transition: var(--transition);
-            border-radius: 30px;
-        }
-
-        .lang-switch .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 2px;
-            bottom: 2px;
-            background-color: white;
-            transition: var(--transition);
-            border-radius: 50%;
-        }
-
-        .lang-switch input:checked + .slider {
-            background: var(--primary);
-        }
-
-        .lang-switch input:checked + .slider:before {
-            transform: translateX(30px);
-        }
-
-        .smart-search {
-            position: relative;
-            flex: 1;
-            max-width: 400px;
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #6c757d;
-        }
-
-        #searchInput {
-            width: 100%;
-            padding: 0.8rem 1rem 0.8rem 3rem;
-            border: none;
-            border-radius: 30px;
-            background: white;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-        }
-
-        #searchInput:focus {
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.3);
-        }
-
-        main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem 3rem;
-        }
-
-        .main-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .knowledge-card {
-            background: white;
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .knowledge-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .knowledge-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: var(--gradient-primary);
-        }
-
-        .card-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
-        .card-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--dark);
-        }
-
-        .card-desc {
-            color: #6c757d;
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-        }
-
-        .blueprint-features {
-            list-style: none;
-            margin-top: 0.5rem;
-        }
-
-        .blueprint-features li {
-            margin-bottom: 0.3rem;
-            color: #6c757d;
-        }
-
-        .card-cta {
-            margin-top: auto;
-        }
-
-        .cta-btn {
-            display: inline-block;
-            background: var(--gradient-primary);
-            color: white;
-            text-decoration: none;
-            padding: 0.6rem 1.5rem;
-            border-radius: 30px;
-            font-weight: 500;
-            transition: var(--transition);
-            text-align: center;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .cta-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .paper-tabs {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .paper-group {
-            flex: 1;
-            background: #f8f9fa;
-            padding: 1rem;
-            border-radius: var(--radius);
-            text-align: center;
-        }
-
-        .medium-title {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.3rem;
-            color: var(--dark);
-        }
-
-        .years-text {
-            font-size: 0.8rem;
-            color: #6c757d;
-            margin-bottom: 0.5rem;
-        }
-
-        .pdf-link {
-            display: inline-block;
-            background: var(--gradient-success);
-            color: white;
-            text-decoration: none;
-            padding: 0.4rem 1rem;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            transition: var(--transition);
-        }
-
-        .pdf-link:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .community-section {
-            margin-top: 3rem;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            color: var(--dark);
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--gradient-accent);
-            border-radius: 2px;
-        }
-
-        .community-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .community-card {
-            background: white;
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            text-align: center;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-        .community-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .community-card i {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .community-card.youtube i {
-            color: #FF0000;
-        }
-
-        .community-card.whatsapp i {
-            color: #25D366;
-        }
-
-        .community-card.telegram i {
-            color: #0088cc;
-        }
-
-        .community-card.instagram i {
-            color: #E1306C;
-        }
-
-        .community-card h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--dark);
-        }
-
-        .community-card p {
-            color: #6c757d;
-            margin-bottom: 1rem;
-        }
-
-        .feature-list {
-            list-style: none;
-            text-align: left;
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-        }
-
-        .feature-list li {
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-        }
-
-        .main-footer {
-            background: var(--gradient-primary);
-            color: white;
-            padding: 2rem;
-            text-align: center;
-            margin-top: 4rem;
-        }
-
-        .contact-info {
-            margin-bottom: 1rem;
-        }
-
-        .community-bar {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .community-bar a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .community-bar a:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-3px);
-        }
-
-        .main-footer p {
-            opacity: 0.8;
-            font-size: 0.9rem;
-        }
-
-        /* Questions List Styling */
-        .question-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .question-card {
-            background: white;
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-        }
-
-        .question-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .question-number {
-            font-weight: bold;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .question-text {
-            margin-bottom: 1rem;
-        }
-
-        .question-text .english {
-            margin-bottom: 0.5rem;
-        }
-
-        .question-text .gujarati {
-            color: #666;
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .navbar ul {
-                gap: 0.8rem;
-            }
-
-            .navbar ul li a {
-                font-size: 0.9rem;
-                padding: 0.4rem 0.7rem;
-            }
-
-            .paper-tabs {
-                flex-direction: column;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .brand {
-                flex-direction: column;
-                text-align: center;
-                gap: 0.5rem;
-            }
-
-            .navbar {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .navbar ul {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .controls {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .smart-search {
-                max-width: 100%;
-            }
-
-            .glass-nav {
-                top: 142px;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .main-header {
-                padding: 1rem;
-            }
-
-            .brand-text h1 {
-                font-size: 1.5rem;
-            }
-
-            main {
-                padding: 1rem;
-            }
-
-            .main-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .section-title {
-                font-size: 1.7rem;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <header class="main-header">
-        <div class="brand">
-            <img src="https://raw.githubusercontent.com/syedirsad/CHAP1/main/logo.png" alt="NPG Logo" class="npg-logo">
-            <div class="brand-text">
-                <h1>NEET PHYSICS GUJARATI</h1>
-                <p>BY IRSHAD SIR</p>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+        </div>
+    </div>
+
+    <!-- Modern Header -->
+    <header class="modern-header">
+        <div class="header-container">
+            <div class="logo-section">
+                <div class="logo-placeholder">
+                    <img src="https://raw.githubusercontent.com/syedirsad/CHAP1/main/logo.png" alt="NPG Logo" class="logo-img">
+                </div>
+                <div class="brand-info">
+                    <h1 class="brand-title">NEET PHYSICS GUJARATI</h1>
+                    <p class="brand-subtitle">BY IRSHAD SIR</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="strategy-btn pulse-btn" onclick="window.open('https://syedirsad.github.io/march2026tips/', '_blank')">
+                    <i class="fas fa-rocket"></i>
+                    <span>Strategy 2026</span>
+                </button>
             </div>
         </div>
     </header>
 
-    <div class="glass-nav" aria-label="Primary">
-        <div class="navbar">
-            <ul>
-                <li><a href="#" onclick="showHome()"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="https://syedirsad.github.io/partb/" target="_blank" class="partb-link">
-                        <i class="fas fa-book"></i> Class 12 Part B PYQs</a>
+    <!-- Glass Navigation -->
+    <nav class="glass-navigation">
+        <div class="nav-container">
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" onclick="showHome()" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
                 </li>
-                <li>
-                    <a href="#" id="impQuestionsTab"><i class="fas fa-star"></i> Important Questions</a>
-                    <ul class="imp-questions-menu">
-                        <li><a href="#" onclick="loadQuestions('2MARKS')">2 Marks Questions</a>
-                        </li>
-                        <li><a href="#" onclick="loadQuestions('3MARKS')">3 Marks Questions</a>
-                        </li>
-                        <li><a href="#" onclick="loadQuestions('4MARKS')">4 Marks Questions</a>
-                        </li>
+                <li class="nav-item">
+                    <a href="https://syedirsad.github.io/partb/" target="_blank" class="nav-link">
+                        <i class="fas fa-book-open"></i>
+                        <span>Class 12 Part B</span>
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">
+                        <i class="fas fa-star"></i>
+                        <span>Important Questions</span>
+                        <i class="fas fa-chevron-down dropdown-icon"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" onclick="loadQuestions('2MARKS')">2 Marks Questions</a></li>
+                        <li><a href="#" onclick="loadQuestions('3MARKS')">3 Marks Questions</a></li>
+                        <li><a href="#" onclick="loadQuestions('4MARKS')">4 Marks Questions</a></li>
                     </ul>
                 </li>
-                <li><a href="https://syedirsad.github.io/march2026tips/" target="_blank" class="exam-plan-link">
-                        <i class="fas fa-file-alt"></i> GSEB 2026 Blueprint
-                    </a></li>
-                <li>
-                    <a href="#"><i class="fas fa-graduation-cap"></i> Class 11 Quizzes</a>
-                    <ul>
-                        <li><a target="_blank" href="https://syedirsad.github.io/std11ch1/">Ch 1 – Units & Measurements</a></li>
-                        <li><a target="_blank" href="https://syedirsad.github.io/std11ch2/">Ch 2 – Motion in a Straight Line</a></li>
-                        <li><a target="_blank" href="https://syedirsad.github.io/STD11CH3/">Ch 3 – Motion in a Plane</a></li>
-                        <li><a target="_blank" href="https://syedirsad.github.io/std11ch4/">Ch 4 – Laws of Motion</a></li>
-                        <li><a href="#">Ch 5 – Work, Energy and Power (Coming Soon)</a></li>
+                <li class="nav-item">
+                    <a href="https://syedirsad.github.io/march2026tips/" target="_blank" class="nav-link">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>GSEB Blueprint</span>
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Class 11 Quizzes</span>
+                        <i class="fas fa-chevron-down dropdown-icon"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://syedirsad.github.io/std11ch1/" target="_blank">Ch 1 – Units & Measurements</a></li>
+                        <li><a href="https://syedirsad.github.io/std11ch2/" target="_blank">Ch 2 – Motion in a Straight Line</a></li>
+                        <li><a href="https://syedirsad.github.io/STD11CH3/" target="_blank">Ch 3 – Motion in a Plane</a></li>
+                        <li><a href="https://syedirsad.github.io/std11ch4/" target="_blank">Ch 4 – Laws of Motion</a></li>
+                        <li><a href="#" class="coming-soon">Ch 5 – Work, Energy and Power</a></li>
                     </ul>
                 </li>
-                <li>
-                    <a href="#"><i class="fas fa-graduation-cap"></i> Class 12 Quizzes</a>
-                    <ul>
-                        <li><a target="_blank" href="https://syedirsad.github.io/CHAP1/">Ch 1 – Electric Charges & Fields</a></li>
-                        <li><a target="_blank" href="https://syedirsad.github.io/chap2/">Ch 2 – Potential & Capacitance</a></li>
-                        <li><a href="#">Ch 3 – Current Electricity (Coming Soon)</a></li>
-                        <li><a target="_blank" href="https://syedirsad.github.io/neet-CH1/">NEET–CH1</a></li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">
+                        <i class="fas fa-atom"></i>
+                        <span>Class 12 Quizzes</span>
+                        <i class="fas fa-chevron-down dropdown-icon"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://syedirsad.github.io/CHAP1/" target="_blank">Ch 1 – Electric Charges & Fields</a></li>
+                        <li><a href="https://syedirsad.github.io/chap2/" target="_blank">Ch 2 – Potential & Capacitance</a></li>
+                        <li><a href="#" class="coming-soon">Ch 3 – Current Electricity</a></li>
+                        <li><a href="https://syedirsad.github.io/neet-CH1/" target="_blank">NEET–CH1</a></li>
                     </ul>
                 </li>
             </ul>
-            <button class="strategy-btn" onclick="window.open('https://syedirsad.github.io/march2026tips/', '_blank')">
-                <i class="fas fa-chart-line"></i> Strategy 2026
-            </button>
+        </div>
+    </nav>
+
+    <!-- Control Panel -->
+    <div class="control-panel" data-aos="fade-down" data-aos-delay="200">
+        <div class="control-container">
+            <div class="language-toggle">
+                <span class="toggle-label">ગુજરાતી</span>
+                <label class="modern-switch">
+                    <input type="checkbox" id="langToggle" onchange="toggleLanguage()" checked>
+                    <span class="switch-slider">
+                        <span class="switch-handle"></span>
+                    </span>
+                </label>
+                <span class="toggle-label">English</span>
+            </div>
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input id="searchInput" type="text" placeholder="Search questions..." oninput="searchQuestions()">
+                    <div class="search-glow"></div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="controls">
-        <div class="lang-toggle-slider">
-            <span>ગુજરાતી</span>
-            <label class="lang-switch">
-                <input type="checkbox" id="langToggle" onchange="toggleLanguage()" checked>
-                <span class="slider"></span>
-            </label>
-            <span>English</span>
-        </div>
-        <div class="smart-search">
-            <i class="fas fa-search search-icon" aria-hidden="true"></i>
-            <input id="searchInput" type="text" placeholder="Search questions..." oninput="searchQuestions()">
-        </div>
-    </div>
+    <!-- Main Content -->
+    <main id="content" class="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section" data-aos="fade-up">
+            <div class="hero-content">
+                <h2 class="hero-title">Master Physics with Interactive Learning</h2>
+                <p class="hero-subtitle">Comprehensive NEET Physics preparation in Gujarati</p>
+            </div>
+        </section>
 
-    <main id="content">
-        <section class="main-grid">
-            <article class="knowledge-card blueprint-card">
-                <i class="fas fa-tasks card-icon" aria-hidden="true"></i>
-                <h3 class="card-title">Class 12 Physics Exam 2026</h3>
-                <p class="card-desc">
-                    Complete Exam Blueprint & Strategy
-                <ul class="blueprint-features">
-                    <li>✓ Exam Pattern Analysis</li>
-                    <li>✓ Chapter-wise Weightage</li>
-                    <li>✓ Full Preparation Plan</li>
-                </ul>
-                </p>
-                <div class="card-cta">
-                    <a href="https://syedirsad.github.io/march2026tips/" target="_blank" class="cta-btn">View
-                        Blueprint</a>
-                </div>
-            </article>
-
-            <article class="knowledge-card">
-                <i class="fas fa-atom card-icon" aria-hidden="true"></i>
-                <h3 class="card-title">Units & Measurements</h3>
-                <p class="card-desc">એકમો અને માપન<br>Chapter 1 - Class 11</p>
-                <div class="card-cta">
-                    <a href="https://syedirsad.github.io/std11ch1/" target="_blank" class="cta-btn">Start Quiz</a>
-                </div>
-            </article>
-
-            <article class="knowledge-card">
-                <i class="fas fa-road card-icon" aria-hidden="true"></i>
-                <h3 class="card-title">Motion in a Straight Line</h3>
-                <p class="card-desc">સુરેખ પથ પર ગતિ<br>Chapter 2 - Class 11</p>
-                <div class="card-cta">
-                    <a href="https://syedirsad.github.io/std11ch2/" target="_blank" class="cta-btn">Start Quiz</a>
-                </div>
-            </article>
-
-            <article class="knowledge-card">
-                <i class="fas fa-compass card-icon" aria-hidden="true"></i>
-                <h3 class="card-title">Motion in a Plane</h3>
-                <p class="card-desc">સમતલમાં ગતિ<br>Chapter 3 - Class 11</p>
-                <div class="card-cta">
-                    <a href="https://syedirsad.github.io/STD11CH3/" target="_blank" class="cta-btn">Start Quiz</a>
-                </div>
-            </article>
-            
-            <article class="knowledge-card">
-                <i class="fas fa-balance-scale card-icon" aria-hidden="true"></i>
-                <h3 class="card-title">Laws of Motion</h3>
-                <p class="card-desc">ગતિના નિયમો<br>Chapter 4 - Class 11</p>
-                <div class="card-cta">
-                    <a href="https://syedirsad.github.io/std11ch4/" target="_blank" class="cta-btn">Start Quiz</a>
-                </div>
-            </article>
-
-            <article class="knowledge-card">
-                <i class="fas fa-cogs card-icon" aria-hidden="true"></i>
-                <h3 class="card-title">Work, Energy and Power</h3>
-                <p class="card-desc">કાર્ય, ઊર્જા અને પાવર<br>Chapter 5 - Class 11</p>
-                <div class="card-cta">
-                    <a class="cta-btn" style="background: #a9a9a9; cursor: not-allowed;">Coming Soon</a>
-                </div>
-            </article>
-
-            <article class="knowledge-card">
-                <i class="fas fa-bolt card-icon" aria-hidden="true"></i>
-                <h3 class="card-title">Electric Charges & Fields</h3>
-                <p class="card-desc">વિદ્યુતભારો અને ક્ષેત્રો<br>Chapter 1 - Class 12</p>
-                <div class="card-cta">
-                    <a href="https://syedirsad.github.io/CHAP1/" target="_blank" class="cta-btn">Start Quiz</a>
-                </div>
-            </article>
-
-            <article class="knowledge-card">
-                <i class="fas fa-car-battery card-icon" aria-hidden="true"></i>
-                <h3 class="card-title">Potential & Capacitance</h3>
-                <p class="card-desc">સ્થિતવિદ્યુતસ્થિતિમાન અને કૅપેસિટન્સ<br>Chapter 2 - Class 12</p>
-                <div class="card-cta">
-                    <a href="https://syedirsad.github.io/chap2/" target="_blank" class="cta-btn">Start Quiz</a>
-                </div>
-            </article>
-
-            <article class="knowledge-card">
-                <i class="fas fa-file-alt card-icon" aria-hidden="true"></i>
-                <h3 class="card-title">Board Exam Question Papers</h3>
-                <p class="card-desc">GSEB Physics Papers (2018-2025)</p>
-                <div class="paper-tabs">
-                    <div class="paper-group">
-                        <h4 class="medium-title">English Medium</h4>
-                        <p class="years-text">2018-2025</p>
-                        <a href="https://github.com/syedirsad/allpdf/raw/main/EM%20PHYSICS%20BOARDS%20PAPER.pdf"
-                            class="pdf-link" target="_blank">
-                            <i class="fas fa-download"></i> Download Papers
-                        </a>
+        <!-- Resource Cards Grid -->
+        <section class="resources-grid">
+            <!-- Exam Blueprint Card -->
+            <article class="resource-card blueprint-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-header">
+                    <div class="card-icon blueprint-icon">
+                        <i class="fas fa-chart-line"></i>
                     </div>
-                    <div class="paper-group">
-                        <h4 class="medium-title">ગુજરાતી માધ્યમ</h4>
-                        <p class="years-text">2018-2025</p>
-                        <a href="https://github.com/syedirsad/allpdf/raw/main/GM%20PHYSICS%20BOARDS%20PAPER.pdf"
-                            class="pdf-link" target="_blank">
-                            <i class="fas fa-download"></i> પેપર્સ ડાઉનલોડ
-                        </a>
+                    <div class="card-badge">Essential</div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Class 12 Physics Exam 2026</h3>
+                    <p class="card-description">Complete Exam Blueprint & Strategy</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Exam Pattern Analysis</li>
+                        <li><i class="fas fa-check"></i> Chapter-wise Weightage</li>
+                        <li><i class="fas fa-check"></i> Full Preparation Plan</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="https://syedirsad.github.io/march2026tips/" target="_blank" class="modern-btn primary-btn">
+                        <span>View Blueprint</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Class 11 Chapters -->
+            <article class="resource-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-header">
+                    <div class="card-icon physics-icon">
+                        <i class="fas fa-ruler"></i>
                     </div>
                 </div>
+                <div class="card-content">
+                    <h3 class="card-title">Units & Measurements</h3>
+                    <p class="card-description">એકમો અને માપન<br><span class="chapter-info">Chapter 1 - Class 11</span></p>
+                </div>
+                <div class="card-footer">
+                    <a href="https://syedirsad.github.io/std11ch1/" target="_blank" class="modern-btn secondary-btn">
+                        <span>Start Quiz</span>
+                        <i class="fas fa-play"></i>
+                    </a>
+                </div>
             </article>
 
-            <article class="knowledge-card">
-                <i class="fas fa-graduation-cap card-icon" aria-hidden="true"></i>
-                <h3 class="card-title">NEET/JEE Physics Quiz</h3>
-                <p class="card-desc">NEET/JEE Physics Quiz - Chapterwise</p>
-                <div class="card-cta">
-                    <button class="cta-btn"
-                        onclick="window.open('https://syedirsad.github.io/neet-jee/','_blank')">Start Quiz</button>
+            <article class="resource-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="card-header">
+                    <div class="card-icon motion-icon">
+                        <i class="fas fa-arrows-alt-h"></i>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Motion in a Straight Line</h3>
+                    <p class="card-description">સુરેખ પથ પર ગતિ<br><span class="chapter-info">Chapter 2 - Class 11</span></p>
+                </div>
+                <div class="card-footer">
+                    <a href="https://syedirsad.github.io/std11ch2/" target="_blank" class="modern-btn secondary-btn">
+                        <span>Start Quiz</span>
+                        <i class="fas fa-play"></i>
+                    </a>
+                </div>
+            </article>
+
+            <article class="resource-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="card-header">
+                    <div class="card-icon plane-icon">
+                        <i class="fas fa-vector-square"></i>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Motion in a Plane</h3>
+                    <p class="card-description">સમતલમાં ગતિ<br><span class="chapter-info">Chapter 3 - Class 11</span></p>
+                </div>
+                <div class="card-footer">
+                    <a href="https://syedirsad.github.io/STD11CH3/" target="_blank" class="modern-btn secondary-btn">
+                        <span>Start Quiz</span>
+                        <i class="fas fa-play"></i>
+                    </a>
+                </div>
+            </article>
+
+            <article class="resource-card" data-aos="fade-up" data-aos-delay="500">
+                <div class="card-header">
+                    <div class="card-icon laws-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Laws of Motion</h3>
+                    <p class="card-description">ગતિના નિયમો<br><span class="chapter-info">Chapter 4 - Class 11</span></p>
+                </div>
+                <div class="card-footer">
+                    <a href="https://syedirsad.github.io/std11ch4/" target="_blank" class="modern-btn secondary-btn">
+                        <span>Start Quiz</span>
+                        <i class="fas fa-play"></i>
+                    </a>
+                </div>
+            </article>
+
+            <article class="resource-card coming-soon-card" data-aos="fade-up" data-aos-delay="600">
+                <div class="card-header">
+                    <div class="card-icon energy-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="card-badge coming-soon-badge">Coming Soon</div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Work, Energy and Power</h3>
+                    <p class="card-description">કાર્ય, ઊર્જા અને પાવર<br><span class="chapter-info">Chapter 5 - Class 11</span></p>
+                </div>
+                <div class="card-footer">
+                    <button class="modern-btn disabled-btn" disabled>
+                        <span>Coming Soon</span>
+                        <i class="fas fa-clock"></i>
+                    </button>
+                </div>
+            </article>
+
+            <!-- Class 12 Chapters -->
+            <article class="resource-card" data-aos="fade-up" data-aos-delay="700">
+                <div class="card-header">
+                    <div class="card-icon electric-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Electric Charges & Fields</h3>
+                    <p class="card-description">વિદ્યુતભારો અને ક્ષેત્રો<br><span class="chapter-info">Chapter 1 - Class 12</span></p>
+                </div>
+                <div class="card-footer">
+                    <a href="https://syedirsad.github.io/CHAP1/" target="_blank" class="modern-btn secondary-btn">
+                        <span>Start Quiz</span>
+                        <i class="fas fa-play"></i>
+                    </a>
+                </div>
+            </article>
+
+            <article class="resource-card" data-aos="fade-up" data-aos-delay="800">
+                <div class="card-header">
+                    <div class="card-icon capacitor-icon">
+                        <i class="fas fa-battery-three-quarters"></i>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Potential & Capacitance</h3>
+                    <p class="card-description">સ્થિતવિદ્યુતસ્થિતિમાન અને કૅપેસિટન્સ<br><span class="chapter-info">Chapter 2 - Class 12</span></p>
+                </div>
+                <div class="card-footer">
+                    <a href="https://syedirsad.github.io/chap2/" target="_blank" class="modern-btn secondary-btn">
+                        <span>Start Quiz</span>
+                        <i class="fas fa-play"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Board Papers Card -->
+            <article class="resource-card papers-card" data-aos="fade-up" data-aos-delay="900">
+                <div class="card-header">
+                    <div class="card-icon papers-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="card-badge download-badge">Download</div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Board Exam Papers</h3>
+                    <p class="card-description">GSEB Physics Papers (2018-2025)</p>
+                    <div class="paper-options">
+                        <div class="paper-option">
+                            <h4>English Medium</h4>
+                            <span class="years-range">2018-2025</span>
+                            <a href="https://github.com/syedirsad/allpdf/raw/main/EM%20PHYSICS%20BOARDS%20PAPER.pdf" 
+                               class="download-link" target="_blank">
+                                <i class="fas fa-download"></i>
+                                Download
+                            </a>
+                        </div>
+                        <div class="paper-option">
+                            <h4>ગુજરાતી માધ્યમ</h4>
+                            <span class="years-range">2018-2025</span>
+                            <a href="https://github.com/syedirsad/allpdf/raw/main/GM%20PHYSICS%20BOARDS%20PAPER.pdf" 
+                               class="download-link" target="_blank">
+                                <i class="fas fa-download"></i>
+                                ડાઉનલોડ
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- NEET/JEE Quiz Card -->
+            <article class="resource-card neet-card" data-aos="fade-up" data-aos-delay="1000">
+                <div class="card-header">
+                    <div class="card-icon neet-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="card-badge neet-badge">NEET/JEE</div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">NEET/JEE Physics Quiz</h3>
+                    <p class="card-description">Competitive exam preparation - Chapterwise practice</p>
+                </div>
+                <div class="card-footer">
+                    <a href="https://syedirsad.github.io/neet-jee/" target="_blank" class="modern-btn accent-btn">
+                        <span>Start Quiz</span>
+                        <i class="fas fa-rocket"></i>
+                    </a>
                 </div>
             </article>
         </section>
 
-        <section class="community-section">
-            <h2 class="section-title">Join Our Learning Community</h2>
+        <!-- Community Section -->
+        <section class="community-section" data-aos="fade-up" data-aos-delay="300">
+            <div class="section-header">
+                <h2 class="section-title">Join Our Learning Community</h2>
+                <p class="section-subtitle">Connect with thousands of NEET aspirants</p>
+            </div>
+            
             <div class="community-grid">
-                <article class="community-card youtube">
-                    <i class="fab fa-youtube"></i>
+                <article class="community-card youtube-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="community-icon youtube-icon">
+                        <i class="fab fa-youtube"></i>
+                    </div>
                     <h3>YouTube Channel</h3>
                     <p>Watch NEET Physics content in Gujarati</p>
-                    <ul class="feature-list">
-                        <li>✨ Live Sessions</li>
-                        <li>📚 Concept Explanations</li>
-                        <li>📝 PYQ Walkthroughs</li>
+                    <ul class="community-features">
+                        <li><i class="fas fa-video"></i> Live Sessions</li>
+                        <li><i class="fas fa-lightbulb"></i> Concept Explanations</li>
+                        <li><i class="fas fa-question-circle"></i> PYQ Walkthroughs</li>
                     </ul>
-                    <a href="https://www.youtube.com/@npgujarati" target="_blank" class="cta-btn">Subscribe Now</a>
+                    <a href="https://www.youtube.com/@npgujarati" target="_blank" class="community-btn youtube-btn">
+                        <span>Subscribe Now</span>
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
                 </article>
 
-                <article class="community-card whatsapp">
-                    <i class="fab fa-whatsapp"></i>
+                <article class="community-card whatsapp-card" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="community-icon whatsapp-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
                     <h3>WhatsApp Group</h3>
                     <p>Join our active study group</p>
-                    <ul class="feature-list">
-                        <li>👥 Peer Discussions</li>
-                        <li>📢 Important Updates</li>
-                        <li>❓ Doubt Solving</li>
+                    <ul class="community-features">
+                        <li><i class="fas fa-users"></i> Peer Discussions</li>
+                        <li><i class="fas fa-bell"></i> Important Updates</li>
+                        <li><i class="fas fa-question"></i> Doubt Solving</li>
                     </ul>
-                    <a href="https://chat.whatsapp.com/LGeExJ4a5562e13B04uuQm" target="_blank" class="cta-btn">Join
-                        Group</a>
+                    <a href="https://chat.whatsapp.com/LGeExJ4a5562e13B04uuQm" target="_blank" class="community-btn whatsapp-btn">
+                        <span>Join Group</span>
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
                 </article>
 
-                <article class="community-card telegram">
-                    <i class="fab fa-telegram"></i>
+                <article class="community-card telegram-card" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="community-icon telegram-icon">
+                        <i class="fab fa-telegram"></i>
+                    </div>
                     <h3>Telegram Channel</h3>
                     <p>Get instant updates & materials</p>
-                    <ul class="feature-list">
-                        <li>📚 Study Materials</li>
-                        <li>🔔 Quick Updates</li>
-                        <li>📋 Important Notices</li>
+                    <ul class="community-features">
+                        <li><i class="fas fa-book"></i> Study Materials</li>
+                        <li><i class="fas fa-flash"></i> Quick Updates</li>
+                        <li><i class="fas fa-clipboard"></i> Important Notices</li>
                     </ul>
-                    <a href="https://t.me/neet_physics_gujarati" target="_blank" class="cta-btn">Join Channel</a>
+                    <a href="https://t.me/neet_physics_gujarati" target="_blank" class="community-btn telegram-btn">
+                        <span>Join Channel</span>
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
                 </article>
 
-                <article class="community-card instagram">
-                    <i class="fab fa-instagram"></i>
+                <article class="community-card instagram-card" data-aos="zoom-in" data-aos-delay="700">
+                    <div class="community-icon instagram-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
                     <h3>Instagram Profile</h3>
                     <p>Visual learning & quick tips</p>
-                    <ul class="feature-list">
-                        <li>💡 Quick Tips</li>
-                        <li>📸 Visual Content</li>
-                        <li>✨ Daily Motivation</li>
+                    <ul class="community-features">
+                        <li><i class="fas fa-lightbulb"></i> Quick Tips</li>
+                        <li><i class="fas fa-image"></i> Visual Content</li>
+                        <li><i class="fas fa-heart"></i> Daily Motivation</li>
                     </ul>
-                    <a href="https://instagram.com/neet_physics.gujarati" target="_blank" class="cta-btn">Follow Us</a>
+                    <a href="https://instagram.com/neet_physics.gujarati" target="_blank" class="community-btn instagram-btn">
+                        <span>Follow Us</span>
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
                 </article>
             </div>
         </section>
     </main>
 
-    <footer class="main-footer">
-        <div class="contact-info">
-            <p>📞 +91 96018 27762 | Telegram: @neet_physics_gujarati | Instagram: @neet_physics.gujarati</p>
+    <!-- Modern Footer -->
+    <footer class="modern-footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+91 96018 27762</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-telegram"></i>
+                        <span>@neet_physics_gujarati</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-instagram"></i>
+                        <span>@neet_physics.gujarati</span>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.youtube.com/@npgujarati" target="_blank" class="social-link youtube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://chat.whatsapp.com/LGeExJ4a5562e13B04uuQm" target="_blank" class="social-link whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://t.me/neet_physics_gujarati" target="_blank" class="social-link telegram">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                    <a href="https://instagram.com/neet_physics.gujarati" target="_blank" class="social-link instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Syed Irsad. Contact: SYED.IRSAD@GMAIL.COM</p>
+            </div>
         </div>
-        <div class="community-bar">
-            <a href="https://www.youtube.com/@npgujarati" target="_blank" title="YouTube"><i
-                    class="fab fa-youtube"></i></a>
-            <a href="https://chat.whatsapp.com/LGeExJ4a5562e13B04uuQm" target="_blank" title="WhatsApp"><i
-                    class="fab fa-whatsapp"></i></a>
-            <a href="https://t.me/neet_physics_gujarati" target="_blank" title="Telegram"><i
-                    class="fab fa-telegram"></i></a>
-            <a href="https://instagram.com/neet_physics.gujarati" target="_blank" title="Instagram"><i
-                    class="fab fa-instagram"></i></a>
-        </div>
-        <p>&copy; 2024 Syed Irsad. Contact: SYED.IRSAD@GMAIL.COM</p>
     </footer>
 
-    <!-- Data Files - Must be loaded BEFORE script.js -->
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="data/data2MARKS.js"></script>
     <script src="data/data3MARKS.js"></script>
     <script src="data/data4MARKS.js"></script>
-    <!-- App logic -->
     <script src="script.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 100
+        });
+
+        // Add floating shapes animation
+        function createFloatingShapes() {
+            const shapesContainer = document.querySelector('.floating-shapes');
+            const shapes = shapesContainer.querySelectorAll('.shape');
+            
+            shapes.forEach((shape, index) => {
+                const delay = index * 2;
+                const duration = 15 + Math.random() * 10;
+                shape.style.animationDelay = `${delay}s`;
+                shape.style.animationDuration = `${duration}s`;
+            });
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function() {
+            createFloatingShapes();
+            
+            // Add scroll effect to header
+            let lastScrollTop = 0;
+            const header = document.querySelector('.modern-header');
+            
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    header.style.transform = 'translateY(-100%)';
+                } else {
+                    header.style.transform = 'translateY(0)';
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+        });
+    </script>
 </body>
 
 </html>
-
