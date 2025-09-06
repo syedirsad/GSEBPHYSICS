@@ -1,0 +1,32 @@
+{
+  "name": "neet-physics-gujarati",
+  "version": "1.0.0",
+  "description": "NEET Physics Gujarati - Interactive Physics Quiz Portal",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve . -l 3000",
+    "build": "echo 'No build process needed for static site'",
+    "test": "echo 'No tests specified'"
+  },
+  "keywords": [
+    "neet",
+    "physics",
+    "gujarati",
+    "quiz",
+    "education"
+  ],
+  "author": "Syed Irsad",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/syedirsad/GSEBPHYSICS"
+  },
+  "homepage": ".",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
